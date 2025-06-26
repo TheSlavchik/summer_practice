@@ -61,7 +61,7 @@ namespace task02tests
             Assert.Equal(2, result.Count);
 
             Assert.Equal(2, result["ФИТ"].Count());
-            Assert.Equal(1, result["Экономика"].Count());
+            Assert.Single(result["Экономика"]);
 
             Assert.Contains(result["ФИТ"], s => s.Name == "Иван");
             Assert.Contains(result["ФИТ"], s => s.Name == "Анна");
