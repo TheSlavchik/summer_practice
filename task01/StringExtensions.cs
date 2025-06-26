@@ -4,22 +4,18 @@
     {
         public static bool IsPalindrome(this string input)
         {
-            input = input.ToLower();
-
             if (string.IsNullOrWhiteSpace(input))
             {
                 return false;
             }
 
+            input = input.ToLower();
             string newString = string.Empty;
 
             newString = new string(input.Where(c => !(char.IsPunctuation(c) || char.IsWhiteSpace(c))).ToArray());
+            string reversed = new string(newString.Reverse().ToArray());
 
-            char[] charArray = newString.ToCharArray();
-            Array.Reverse(charArray);
-            string reversedString = new string(charArray);
-
-            return newString == reversedString;
+            return newString == reversed;
         }
     }
 }
