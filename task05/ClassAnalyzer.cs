@@ -20,8 +20,8 @@ namespace task05
 
         public IEnumerable<string> GetMethodParams(string methodname)
         {
-            var method = _type.GetMethod(methodname);
-            return method.GetParameters().Select(p => p.Name);
+            var method = _type.GetMethod(methodname)!;
+            return method.GetParameters().Select(p => p.Name!);
         }
 
         public IEnumerable<string> GetAllFields()
