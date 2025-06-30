@@ -12,7 +12,7 @@ namespace task07tests
             var type = typeof(SampleClass);
             var attribute = type.GetCustomAttribute<DisplayNameAttribute>();
             Assert.NotNull(attribute);
-            Assert.Equal("Пример класса", attribute.DisplayName);
+            Assert.Equal("РџСЂРёРјРµСЂ РєР»Р°СЃСЃР°", attribute.DisplayName);
         }
 
         [Fact]
@@ -21,7 +21,7 @@ namespace task07tests
             var method = typeof(SampleClass).GetMethod("TestMethod");
             var attribute = method.GetCustomAttribute<DisplayNameAttribute>();
             Assert.NotNull(attribute);
-            Assert.Equal("Тестовый метод", attribute.DisplayName);
+            Assert.Equal("РўРµСЃС‚РѕРІС‹Р№ РјРµС‚РѕРґ", attribute.DisplayName);
         }
 
         [Fact]
@@ -30,7 +30,7 @@ namespace task07tests
             var prop = typeof(SampleClass).GetProperty("Number");
             var attribute = prop.GetCustomAttribute<DisplayNameAttribute>();
             Assert.NotNull(attribute);
-            Assert.Equal("Числовое свойство", attribute.DisplayName);
+            Assert.Equal("Р§РёСЃР»РѕРІРѕРµ СЃРІРѕР№СЃС‚РІРѕ", attribute.DisplayName);
         }
 
         [Fact]
