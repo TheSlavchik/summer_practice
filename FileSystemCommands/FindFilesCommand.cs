@@ -4,7 +4,7 @@ public class FindFilesCommand : ICommand
 {
     private string _directoryPath;
     private string _mask;
-    private string[] _foundFiles;
+    private string[] _foundFiles = new string[0];
     public string[] FoundFiles => _foundFiles;
 
     public FindFilesCommand(string directoryPath, string mask)

@@ -17,24 +17,31 @@ namespace CommandRunner
             var commandTypes = assembly.GetTypes().Where(t => typeof(ICommand).IsAssignableFrom(t));
             string mask = "*.txt";
             object[] args = [testDir, mask];
-            ICommand command;
+            ICommand? command;
 
             foreach (var commandType in commandTypes)
             {
                 if (commandType.Name == "DirectorySizeCommand")
                 {
-                    command = (ICommand)Activator.CreateInstance(commandType, args[0]);
+                    command = (ICommand?)Activator.CreateInstance(commandType, args[0]);
                 }
                 else if (commandType.Name == "FindFilesCommand")
                 {
-                    command = (ICommand)Activator.CreateInstance(commandType, args);
+                    command = (ICommand?)Activator.CreateInstance(commandType, args);
                 }
                 else
                 {
                     return;
                 }
 
-                command.Execute();
+                if (command != null)
+                {
+                    command.Execute();
+                }
+                else
+                {
+                    Console.WriteLine("Null Command");
+                }
             }
 
             Directory.Delete(testDir, true);
