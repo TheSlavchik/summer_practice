@@ -42,8 +42,8 @@ namespace task08tests
             Console.SetOut(writer);
             
             Program.Main();
-            string[] result = writer.ToString().Split("\n\r ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
+            string[] result = writer.ToString().Split("\n\r ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
 
             Assert.Equal(2, result.Length);
             Assert.Equal("7", result[0]);
