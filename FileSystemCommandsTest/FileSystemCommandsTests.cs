@@ -1,3 +1,5 @@
+using CommandRunner;
+
 namespace task08tests
 {
     public class FileSystemCommandsTests
@@ -31,6 +33,21 @@ namespace task08tests
             Assert.Contains("file1.txt", command.FoundFiles[0]);
 
             Directory.Delete(testDir, true);
+        }
+
+        [Fact]
+        public void CommandRunner()
+        {
+            StringWriter writer = new StringWriter();
+            Console.SetOut(writer);
+            
+            Program.Main();
+            string[] result = writer.ToString().Split("\n\r ".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+
+            Assert.Equal(2, result.Length);
+            Assert.Equal("7", result[0]);
+            Assert.Equal(Path.Combine(Path.GetTempPath(), "TestDir", "file1.txt"), result[1]);
         }
     }
 }
