@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
 
-namespace task10
+namespace task09
 {
-    public class Program
+    public class MetadataPrinter
     {
-        static void Main()
+        public static void Main()
         {
             Console.WriteLine("Enter path to the library");
 
@@ -23,7 +23,6 @@ namespace task10
                 return;
             }
 
-
             Assembly assembly = Assembly.LoadFrom(libraryPath);
             IEnumerable<Type> types = assembly.GetExportedTypes().OrderBy(t => t.Namespace + "." + t.Name);
 
@@ -36,20 +35,18 @@ namespace task10
             }
         }
 
-        static void DisplayClassInfo(Type type)
+        public static void DisplayClassInfo(Type type)
         {
-            Console.WriteLine(new string('-', 60));
             Console.WriteLine($"Class: {type.FullName}");
 
             DisplayAttributes(type.GetCustomAttributes());
             DisplayConstructors(type);
             DisplayMethods(type);
 
-            Console.WriteLine(new string('-', 60));
             Console.WriteLine();
         }
 
-        static void DisplayAttributes(IEnumerable<Attribute> attributes)
+        public static void DisplayAttributes(IEnumerable<Attribute> attributes)
         {
             if (attributes.Any())
             {
@@ -62,7 +59,7 @@ namespace task10
             }
         }
 
-        static void DisplayConstructors(Type type)
+        public static void DisplayConstructors(Type type)
         {
             ConstructorInfo[] constructors = type.GetConstructors(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
 
@@ -80,7 +77,7 @@ namespace task10
             }
         }
 
-        static void DisplayMethods(Type type)
+        public static void DisplayMethods(Type type)
         {
             MethodInfo[] methods = type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly).Where(m => !m.IsSpecialName).ToArray();
 
@@ -98,7 +95,7 @@ namespace task10
             }
         }
 
-        static void DisplayParameters(ParameterInfo[] parameters)
+        public static void DisplayParameters(ParameterInfo[] parameters)
         {
             for (int i = 0; i < parameters.Length; i++)
             {
