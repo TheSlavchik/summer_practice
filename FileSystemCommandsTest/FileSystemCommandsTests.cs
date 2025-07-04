@@ -36,7 +36,7 @@ namespace task08tests
         }
 
         [Fact]
-        public void CommandRunner()
+        public void CommandRunner_PrintsCorrectInfo()
         {
             StringWriter writer = new StringWriter();
             Console.SetOut(writer);
