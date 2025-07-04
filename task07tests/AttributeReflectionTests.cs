@@ -42,5 +42,23 @@ namespace task07tests
             Assert.Equal(1, attribute.Major);
             Assert.Equal(0, attribute.Minor);
         }
+
+        [Fact]
+        public void PrintTypeInfo_PrintsCorrectInfo()
+        {
+            StringWriter writer = new StringWriter();
+            Console.SetOut(writer);
+
+            ReflectionHelper.PrintTypeInfo(typeof(SampleClass));
+
+            string[] result = writer.ToString().Split("\n\r".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+            Assert.Equal("Class: Пример класса", result[0]);
+            Assert.Equal("Version: 1.0", result[1]);
+            Assert.Equal("Methods:", result[2]);
+            Assert.Equal("Тестовый метод", result[3]);
+            Assert.Equal("Properties:", result[4]);
+            Assert.Equal("Числовое свойство", result[5]);
+        }
     }
 }
