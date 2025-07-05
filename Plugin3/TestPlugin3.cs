@@ -2,8 +2,8 @@
 
 namespace Plugin3
 {
-    [PluginLoad("Plugin1", "Plugin2")]
-    public class Plugin3 : IPlugin
+    [PluginLoad("TestPlugin1", "TestPlugin2")]
+    public class TestPlugin3 : IPlugin
     {
         public void Execute()
         {

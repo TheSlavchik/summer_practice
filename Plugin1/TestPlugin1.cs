@@ -3,7 +3,7 @@
 namespace Plugin1
 {
     [PluginLoad]
-    public class Plugin1 : IPlugin
+    public class TestPlugin1 : IPlugin
     {
         public void Execute()
         {

@@ -2,7 +2,7 @@
 
 namespace PluginLoader
 {
-    public class PluginLoader
+    public class PluginsLoader
     {
         public static void Main()
         {
@@ -52,7 +52,7 @@ namespace PluginLoader
             }
         }
 
-        private static List<Type> TopologicalSort(List<Type> pluginTypes)
+        public static List<Type> TopologicalSort(List<Type> pluginTypes)
         {
             var graph = new Dictionary<Type, List<Type>>();
             var inDegree = new Dictionary<Type, int>();
@@ -71,7 +71,7 @@ namespace PluginLoader
                 {
                     foreach (var depName in attr.Dependencies)
                     {
-                        var dependency = pluginTypes.FirstOrDefault(t => t.FullName == depName);
+                        var dependency = pluginTypes.FirstOrDefault(t => t.Name == depName);
                         if (dependency != null)
                         {
                             graph[dependency].Add(type);
