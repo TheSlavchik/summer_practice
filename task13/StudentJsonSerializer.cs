@@ -28,7 +28,7 @@ namespace task13
                 throw new ArgumentException("JSON string cannot be null or empty", nameof(json));
             }
 
-            var student = JsonSerializer.Deserialize<Student>(json, _options);
+            var student = JsonSerializer.Deserialize<Student>(json, _options)!;
 
             if (string.IsNullOrWhiteSpace(student.FirstName))
             {
