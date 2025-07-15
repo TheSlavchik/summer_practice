@@ -17,8 +17,7 @@
             object lock_ = new();
             double total = 0;
             double segmentLength = (b - a) / threadsNumber;
-            var threads = new Thread[threadsNumber];
-            var barrier = new Barrier(threadsNumber + 1);
+            Task[] tasks = new Task[threadsNumber];
 
             for (int i = 0; i < threadsNumber; i++)
             {
@@ -34,27 +33,39 @@
                     end = start + segmentLength;
                 }
 
-                threads[i] = new Thread(() =>
+                tasks[i] = Task.Run(() =>
                 {
                     double partialSum = CalculatePartialIntegral(start, end, function, step);
+
                     lock (lock_)
                     {
                         total += partialSum;
                     }
-                    barrier.SignalAndWait();
                 });
-
-                threads[i].Start();
             }
 
-            barrier.SignalAndWait();
-
+            Task.WaitAll(tasks);
             return total;
         }
 
         private static double CalculatePartialIntegral(double a, double b, Func<double, double> function, double step)
         {
             double sum = 0.0;
+            double x = a;
+
+            while (x < b)
+            {
+                double xNext = Math.Min(x + step, b);
+                sum += (function(x) + function(xNext)) * (xNext - x) / 2;
+                x = xNext;
+            }
+
+            return sum;
+        }
+
+        public static double SolveSingleThread(double a, double b, Func<double, double> function, double step)
+        {
+            double sum = 0;
             double x = a;
 
             while (x < b)
