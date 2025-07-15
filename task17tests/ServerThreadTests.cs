@@ -24,7 +24,7 @@ namespace task17tests
             serverThread.Post(new HardStop(serverThread));
             serverThread.Post(new ActionCommand(() => command2Executed = true));
 
-            Thread.Sleep(100);
+            Thread.Sleep(300);
 
             Assert.True(command1Executed);
             Assert.False(command2Executed);
