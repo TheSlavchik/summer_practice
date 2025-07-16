@@ -53,7 +53,7 @@ namespace task18
                 }
             }
             
-            _commandQueue.Dispose();
+            //_commandQueue.Dispose();
         }
 
         private void ExecuteCommand(ICommand? command)
